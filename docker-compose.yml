@@ -15,6 +15,9 @@ services:
     depends_on:
       - db
     environment: &web-environment
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
       BUNDLE_PATH: /bundle_cache
       GEM_HOME: /bundle_cache
       GEM_PATH: /bundle_cache
@@ -23,7 +26,7 @@ services:
     command: bundle exec rails s -b '0.0.0.0' -p 3000
 
   db:
-    image: postgres:11.4
+    image: postgres:10
     ports:
       - 5432:5432
     environment:
